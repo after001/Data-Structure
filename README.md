@@ -1,2 +1,3 @@
-# Ordenacao
-Alghoritms and Data Structures - Ordenation
+# Alghoritms and Data Structures
+ - Ordenation;
+ - Recursivity.
