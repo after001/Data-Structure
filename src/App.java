@@ -36,5 +36,11 @@ public class App {
 
         System.out.println(Recursividade.buscaBinaria(z, chave, esq, dir));
         System.out.println();
+
+        int[] array = {5, 2, 8, 3, 1, 6, 9, 4, 7};
+        MergeSort.mergeSort(array, 0, array.length - 1);
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
     }
 }
