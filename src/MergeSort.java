@@ -1,43 +1,44 @@
 public class MergeSort {
 
-    public static void merge(int[] v, int left, int middle, int right) {
-        
-        // transfere os elementos entre left e right para um array auxiliar.
-        int[] helper = new int[v.length];
-        for (int i = left; i <= right; i++) {
-            helper[i] = v[i];
+    public static void mergeSort(int[] vetor, int inicio, int fim) {
+        if (fim == inicio) {
+            return;
         }
-        
-        int i = left;
-        int j = middle + 1;
-        int k = left;
-        
-        while (i <= middle && j <= right) {
-            
-            if (helper[i] <= helper[j]) {
-                v[k] = helper[i];
+        int meio = (inicio + fim) / 2;
+        mergeSort(vetor, inicio, meio);
+        mergeSort(vetor, meio + 1, fim);
+        merge(vetor, inicio, meio, fim);
+    }
+
+    public static void merge(int[] vetor, int inicio, int meio, int fim) {
+        int[] left = new int[meio - inicio + 1];
+        int[] right = new int[fim - meio];
+        for (int i = 0; i < left.length; i++) {
+            left[i] = vetor[inicio + i];
+        }
+        for (int i = 0; i < right.length; i++) {
+            right[i] = vetor[meio + 1 + i];
+        }
+        int i = 0, j = 0, k = inicio;
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) {
+                vetor[k] = left[i];
                 i++;
             } else {
-                v[k] = helper[j];
+                vetor[k] = right[j];
                 j++;
             }
-            k++;    
-            
+            k++;
         }
-        
-        // se a metade inicial não foi toda consumida, faz o append.
-        while (i <= middle) {
-            v[k] = helper[i];
+        while (i < left.length) {
+            vetor[k] = left[i];
             i++;
             k++;
         }
-        
-        // se a metade final não foi toda consumida, faz o append.
-        while (j <= right) {
-            v[k] = helper[j];
+        while (j < right.length) {
+            vetor[k] = right[j];
             j++;
             k++;
         }
-
     }
 }
